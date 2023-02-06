@@ -41,10 +41,20 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/books', [BookController::class, 'index']);
-    Route::get('/categories', [CategoryController::class, 'index']);
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/rent-logs', [RentLogController::class, 'index']);
 
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/category-add', [CategoryController::class, 'create']);
+    Route::post('/category-add', [CategoryController::class, 'store']);
+    Route::get('/category-edit/{slug}', [CategoryController::class, 'edit']);
+    Route::put('/category-edit/{slug}', [CategoryController::class, 'update']);
+    Route::get('/category-delete/{slug}', [CategoryController::class, 'delete']);
+    Route::get('/category-destroy/{slug}', [CategoryController::class, 'destroy']);
+    Route::get('/category-deleted', [CategoryController::class, 'deleted']);
+    Route::get('/category-restore/{slug}', [CategoryController::class, 'restore']);
+
+    Route::get('/users', [UserController::class, 'index']);
+
+    Route::get('/rent-logs', [RentLogController::class, 'index']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
