@@ -1,0 +1,50 @@
+.main {
+    height: 100vh;
+}
+
+.sidebar {
+    background: rgb(0, 151, 189);
+    color: white;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 20px 25px;
+}
+
+.sidebar a:hover {
+    background: black;
+}
+
+.active {
+    background: #000;
+    border-right: solid 7px red;
+}
+
+.cardboxes {
+    border: solid 1px;
+    padding: 20px 50px;
+    color: white;
+}
+
+.cardboxes.book {
+    background: rgb(94, 94, 182);
+}
+
+.cardboxes.category {
+    background: rgb(121, 13, 13);
+}
+
+.cardboxes.users {
+    background: rgb(11, 99, 11);
+}
+
+.card-title {
+    font-size: 35px;
+}
+
+.card-desc {
+    font-size: 35px;
+}
