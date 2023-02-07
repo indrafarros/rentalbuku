@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookRentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -20,12 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [HomeController::class, 'index']);
-
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -68,6 +64,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/categories', [CategoryController::class, 'index']);
 
         Route::get('/rent-logs', [RentLogController::class, 'index']);
+
+        Route::get('/book-rent', [BookRentController::class, 'index']);
+        Route::post('/book-rent', [BookRentController::class, 'store']);
     });
 
     Route::middleware(['client'])->group(function () {

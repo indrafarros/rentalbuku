@@ -51,6 +51,7 @@
                                     request()->route()->uri == 'user-destroy/{slug}' ||
                                     request()->route()->uri == 'user-blocked' ||
                                     request()->route()->uri == 'user-unblock/{slug}') class="active" @endif>Users</a>
+                            <a href="/book-rent" @if (request()->route()->uri == 'book-rent') class="active" @endif>Book Rent</a>
                             <a href="/rent-logs" @if (request()->route()->uri == 'rent-logs') class="active" @endif>Rent Log</a>
                         @else
                             <a href="/profile" @if (request()->route()->uri == 'profile') class="active" @endif>Profile</a>
