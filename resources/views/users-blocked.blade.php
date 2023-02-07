@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Users')
+@section('title', 'Blocked users')
 
 @section('content')
-    <h2>User List</h2>
+    <h2>Blocked Users List</h2>
 
     <div class="my-5 d-flex justify-content-end">
         <a href="/users-registered" class="btn btn-primary me-2">Show registered users</a>
-        <a href="/user-blocked" class="btn btn-secondary">Show blocked user</a>
+        <a href="/users" class="btn btn-danger">Back</a>
     </div>
 
     <div class="my-5">
@@ -43,8 +43,7 @@
                         </td>
                         <td>{{ $item->address }}</td>
                         <td>
-                            <a href="/user-detail/{{ $item->slug }}" class="btn btn-primary">Detail</a>
-                            <a href="/user-block/{{ $item->slug }}" class="btn btn-warning">Blocked user</a>
+                            <a href="/user-unblock/{{ $item->slug }}" class="btn btn-primary">Unblock user</a>
                         </td>
                     </tr>
                 @endforeach
