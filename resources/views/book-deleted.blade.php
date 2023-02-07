@@ -5,9 +5,8 @@
 @section('content')
     <h2>Book List</h2>
 
-    <div class="my-5 d-flex justify-content-end">
-        <a href="/book-add" class="btn btn-primary me-2">Add new data</a>
-        <a href="/book-deleted" class="btn btn-secondary">Show deleted data</a>
+    <div class="my-5 ">
+        <a href="/books" class="btn btn-primary">Back</a>
     </div>
 
     <div class="my-5">
@@ -45,8 +44,7 @@
                         <td>{{ $item->author }}</td>
                         <td>{{ $item->status }}</td>
                         <td>
-                            <a href="/book-edit/{{ $item->slug }}" class="btn btn-primary">Edit</a>
-                            <a href="/book-delete/{{ $item->slug }}" class="btn btn-danger">Delete</a>
+                            <a href="/book-restore/{{ $item->slug }}" class="btn btn-warning">Restore data</a>
                         </td>
                     </tr>
                 @endforeach
