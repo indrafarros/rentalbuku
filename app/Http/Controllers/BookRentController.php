@@ -55,4 +55,37 @@ class BookRentController extends Controller
             }
         }
     }
+
+    public function returnBook()
+    {
+        $user = User::where('role_id', '!=', 1)->where('status', '!=', 'inactive')->get();
+        $book = Book::all();
+        return view('return-book', ['user' => $user, 'book' => $book]);
+    }
+
+    public function saveReturnBook(Request $request)
+    {
+        $rent = RentLogs::where('user_id', $request->user_id)->where('book_id', $request->book_id)->where('actuan_return_date', null);
+        $rentData = $rent->first();
+        $rentCount = $rent->count();
+
+        if ($rentCount == 1) {
+            $rentData->actuan_return_date = Carbon::now()->toDateString();
+            $rentData->save();
+
+            $book = Book::findOrFail($request->book_id);
+            $book->status = 'in stock';
+            $book->save();
+
+            Session::flash('message', 'The book is returned successfully');
+            Session::flash('alert-class', 'alert-success');
+
+            return redirect('rent-return');
+        } else {
+            Session::flash('message', 'There is error in process');
+            Session::flash('alert-class', 'alert-danger');
+
+            return redirect('rent-return');
+        }
+    }
 }
