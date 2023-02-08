@@ -3,7 +3,9 @@
 @section('title', 'Profile')
 
 @section('content')
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae impedit commodi molestias laboriosam, aperiam
-        quis? Exercitationem odio non nam sint necessitatibus, sit laudantium, eum maxime ab totam, odit repudiandae nulla.
-    </p>
+    <h2>Welcome back, {{ $user->username }}</h2>
+    <div class='mt-5'>
+
+        <x-rent-log-table :rentlog='$rent_logs' />
+    </div>
 @endsection

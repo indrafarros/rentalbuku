@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RentLogs;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,11 @@ class UserController extends Controller
     }
 
 
-    public function profile(Request $request)
+    public function profile()
     {
-        return view('profile');
+        $user = User::where('slug', Auth::user()->slug)->first();
+        $rentlogs = RentLogs::with(['user', 'book'])->where('user_id', $user->id)->paginate(5);
+        return view('profile', ['user' => $user, 'rent_logs' => $rentlogs]);
     }
 
     public function userRegistered()
@@ -38,7 +41,8 @@ class UserController extends Controller
     public function show($slug)
     {
         $user = User::where('slug', $slug)->first();
-        return view('user-detail', ['user' => $user]);
+        $rentlogs = RentLogs::with(['user', 'book'])->where('user_id', $user->id)->paginate(5);
+        return view('user-detail', ['user' => $user, 'rent_logs' => $rentlogs]);
     }
 
     public function delete($slug)
